@@ -1,13 +1,23 @@
-<!DOCTYPE html>
-<html>
+{% extends 'accounts/main.html' %}
+{% block content %}
+<br>
 
-<head>
-    <title>Django App</title>
-</head>
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <h5>Products</h5>
+        </div>
+        <div class="card card-body">
+            <table class="table">
+                <tr>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                </tr>
 
-<body>
+            </table>
+        </div>
+    </div>
 
-    <h1>Products</h1>
-</body>
-
-</html>
+</div>
+{% endblock %}
