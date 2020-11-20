@@ -6,12 +6,24 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
-        .duff {
+        .duff-div {
             color: white;
+            margin-right: 25px
+        }
+
+        .tag {
+            margin: -10px 0 0 4px;
+            font-size: 12px;
         }
 
         nav {
             background-color: #ff5d00 !important;
+            margin-bottom: 10px;
+        }
+
+        .inner {
+            padding-left: 25px;
+            padding-right: 25px;
         }
 
         #logo {}
@@ -39,8 +51,10 @@
 
 <body>
     {% include 'accounts/navbar.html' %}
-    {% block content %}
-    {% endblock %}
+    <div class="inner">
+        {% block content %}
+        {% endblock %}
+    </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
