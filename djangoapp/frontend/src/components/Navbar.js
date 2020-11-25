@@ -1,10 +1,14 @@
 import { NavLink } from 'react-router-dom';
+import logo from '../../public/duffl.png'
 
 function Navbar() {
     return (
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="duff-div">
-                <h1 class="duff">duffl-lite</h1>
+                <div className="logo-div">
+                    <img className="duffl-logo" src={logo} alt="Logo" />
+                    <h1 class="duff">-lite</h1>
+                </div>
                 <p class="tag">a better vending machine</p>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"

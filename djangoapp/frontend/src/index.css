@@ -14,13 +14,36 @@ code {
 
 /* Duffl */
 
+.navbar-nav a {
+  text-decoration: none;
+}
+
+.h1-style {
+  text-align: center;
+  padding: 10px;
+}
+
+.logo-div {
+  display: flex;
+}
+
+.duff {
+  margin-top: 16px;
+  margin-bottom: -10px;
+}
+
+.duffl-logo {
+  display: inline-block;
+  width: 90px;
+}
+
 .duff-div {
   color: white;
   margin-right: 25px;
 }
 
 .tag {
-  margin: -12px 0 0 4px;
+  margin: 2px 0 0 4px;
   font-size: 12px;
 }
 
@@ -30,11 +53,8 @@ nav {
 }
 
 .inner {
-  padding-left: 25px;
-  padding-right: 25px;
-}
-
-#logo {
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 body {
