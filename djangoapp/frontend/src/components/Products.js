@@ -12,7 +12,7 @@ function Products() {
             .catch(err => {
                 console.log(err)
             })
-    })
+    }, [])
 
     return (
         <Fragment>
@@ -34,7 +34,7 @@ function Products() {
                                 <tr>
                                     <td>{product.name}</td>
                                     <td>{product.category}</td>
-                                    <td>{product.price}</td>
+                                    <td>${product.price}</td>
                                 </tr>
                             ))}
 

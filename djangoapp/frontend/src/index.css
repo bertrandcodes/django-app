@@ -18,6 +18,12 @@ code {
   text-decoration: none;
 }
 
+.navbar-nav li {
+  margin-top: 12px;
+  margin-right: 10px;
+  font-size: 18px;
+}
+
 .h1-style {
   text-align: center;
   padding: 10px;
@@ -25,6 +31,7 @@ code {
 
 .logo-div {
   display: flex;
+  margin-top: 3px;
 }
 
 .duff {
@@ -43,7 +50,7 @@ code {
 }
 
 .tag {
-  margin: 2px 0 0 4px;
+  margin: 2px 0 0 7px;
   font-size: 12px;
 }
 
@@ -71,4 +78,22 @@ body {
 
 #orders-pending {
   background-color: #7cd1c0;
+}
+
+.status a {
+  margin: auto;
+}
+
+.status hr {
+  margin-bottom: 20px;
+}
+
+tr td {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+.table {
+  margin-top: 15px;
+  margin-bottom: 0px;
 }
