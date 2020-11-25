@@ -1,13 +1,54 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+/* Duffl */
+
+.duff-div {
+  color: white;
+  margin-right: 25px;
+}
+
+.tag {
+  margin: -12px 0 0 4px;
+  font-size: 12px;
+}
+
+nav {
+  background-color: #ff5d00 !important;
+  margin-bottom: 10px;
+}
+
+.inner {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+#logo {
+}
+
+body {
+  background-color: #ebeff5;
+}
+
+#total-orders {
+  background-color: #4cb4c7;
+}
+
+#orders-delivered {
+  background-color: #7abecc;
+}
+
+#orders-pending {
+  background-color: #7cd1c0;
 }
