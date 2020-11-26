@@ -23,6 +23,7 @@ function Customer(props) {
                 console.log(err)
             })
     }, [])
+
     return (
         <Fragment>
             <br />
@@ -91,7 +92,7 @@ function Customer(props) {
                                     <td>{order.status}</td>
                                     <td><a class="btn btn-sm btn-info" href="">Update</a></td>
 
-                                    <td><a class="btn btn-sm btn-danger" href="">Delete</a></td>
+                                    <td><a class="btn btn-sm btn-danger">Delete</a></td>
                                 </tr>
                             ))}
 

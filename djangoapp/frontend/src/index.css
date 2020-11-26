@@ -98,7 +98,24 @@ tr td {
   margin-bottom: 0px;
 }
 
-/* th {
-  padding-top: 10px !important;
-  padding-bottom: 10px !important;
-} */
+.btn-danger {
+  color: white !important;
+}
+
+.order-row {
+  margin: auto;
+  margin-top: 55px;
+  width: 400px;
+}
+
+.order-row .card-body {
+  align-items: center;
+  height: 380px;
+  padding-top: 30px;
+}
+
+form .button {
+  position: relative;
+  left: 65px;
+  top: 20px;
+}

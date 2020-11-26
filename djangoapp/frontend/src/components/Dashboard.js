@@ -8,7 +8,7 @@ import Status from './Status';
 function Dashboard() {
     const [customers, setCustomers] = useState([])
     const [orders, setOrders] = useState([])
-
+    const [products, setProducts] = useState([])
 
     useEffect(() => {
         axios.get('http://127.0.0.1:8000/customer-list/')
@@ -25,7 +25,26 @@ function Dashboard() {
             .catch(err => {
                 console.log(err)
             })
+        axios.get('http://127.0.0.1:8000/product-list/')
+            .then(res => {
+                setProducts(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }, [])
+
+    function deleteIt(id) {
+        axios.delete(`http://127.0.0.1:8000/order-delete/${id}/`)
+            .then(res => {
+                console.log(res)
+                window.location.reload()
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
     return (
         <Fragment>
             <Status />
@@ -58,7 +77,14 @@ function Dashboard() {
                     <h5>LAST 5 ORDERS:</h5>
                     <hr />
                     <div class="card card-body">
-                        <Link class="btn btn-primary  btn-sm btn-block" to="/orderform">Create Order</Link>
+                        <Link class="btn btn-primary  btn-sm btn-block" to={{
+                            pathname: '/orderform',
+                            state: {
+                                customers,
+                                orders,
+                                products
+                            }
+                        }}>Create Order</Link>
                         <table class="table table-sm">
                             <tr>
                                 <th>Product</th>
@@ -73,7 +99,7 @@ function Dashboard() {
                                     <td>{order.date_created}</td>
                                     <td>{order.status}</td>
                                     <td><a class="btn btn-sm btn-info" href="">Update</a></td>
-                                    <td><a class="btn btn-sm btn-danger" href="">Delete</a></td>
+                                    <td><a class="btn btn-sm btn-danger" onClick={() => { deleteIt(order.id) }}>Delete</a></td>
                                 </tr>
                             ))}
 
