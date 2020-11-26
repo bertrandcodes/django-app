@@ -1,6 +1,28 @@
-import { Fragment } from 'react';
+import { Fragment, useState, useEffect } from 'react';
+import axios from 'axios';
 
-function Customer() {
+function Customer(props) {
+    const [customer, setCustomer] = useState([])
+    const [orders, setOrders] = useState([])
+
+
+    useEffect(() => {
+        axios.get(`http://127.0.0.1:8000/customer-detail/${props.match.params.id}/`)
+            .then(res => {
+                setCustomer(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        axios.get('http://127.0.0.1:8000/order-list')
+            .then(res => {
+                let orderList = res.data.filter(order => order.customer.id == props.match.params.id)
+                setOrders(orderList)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [])
     return (
         <Fragment>
             <br />
@@ -12,7 +34,6 @@ function Customer() {
                         <hr />
                         <a class="btn btn-outline-info  btn-sm btn-block" href="">Update Customer</a>
                         <a class="btn btn-outline-danger  btn-sm btn-block" href="">Delete Customer</a>
-
                     </div>
                 </div>
 
@@ -20,8 +41,8 @@ function Customer() {
                     <div class="card card-body">
                         <h5>Contact Information</h5>
                         <hr />
-                        <p>Email:</p>
-                        <p>Phone:</p>
+                        <p>Email: {customer.email}</p>
+                        <p>Phone: {customer.phone}</p>
                     </div>
                 </div>
 
@@ -29,7 +50,7 @@ function Customer() {
                     <div class="card card-body">
                         <h5>Total Orders</h5>
                         <hr />
-                        <h1 className="h1-style"></h1>
+                        <h1 className="h1-style">{orders.length}</h1>
                     </div>
                 </div>
             </div>
@@ -61,6 +82,18 @@ function Customer() {
                                 <th>Update</th>
                                 <th>Remove</th>
                             </tr>
+
+                            {orders.map(order => (
+                                <tr>
+                                    <td>{order.product.name}</td>
+                                    <td>{order.product.category}</td>
+                                    <td>{order.date_created}</td>
+                                    <td>{order.status}</td>
+                                    <td><a class="btn btn-sm btn-info" href="">Update</a></td>
+
+                                    <td><a class="btn btn-sm btn-danger" href="">Delete</a></td>
+                                </tr>
+                            ))}
 
 
                         </table>

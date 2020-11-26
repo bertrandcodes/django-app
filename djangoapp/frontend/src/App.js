@@ -16,7 +16,7 @@ function App() {
         <div class="inner">
           <Route path="/" exact component={Dashboard} />
           <Route path="/products" component={Products} />
-          <Route path="/customer" component={Customer} />
+          <Route path="/customer/:id" component={Customer} />
           <Route path="/orderform" component={OrderForm} />
         </div>
       </Switch>

@@ -45,7 +45,7 @@ function Dashboard() {
                             </tr>
                             {customers.map(customer => (
                                 <tr>
-                                    <td><a class="btn btn-sm btn-info" href="">View</a></td>
+                                    <td><Link class="btn btn-sm btn-info" to={`/customer/${customer.id}`}>View</Link></td>
                                     <td>{customer.name}</td>
                                     <td>{customer.phone}</td>
                                 </tr>
