@@ -12,12 +12,12 @@ class CustomerSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class OrderSerializer(serializers.ModelSerializer):
-    customer = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
-    product = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
+    # customer = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
+    # product = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
     class Meta:
         model = Order
         fields = '__all__'
-        #depth=1
+        depth=1
     
     # def create(self, validated_data):
     #     print(validated_data)

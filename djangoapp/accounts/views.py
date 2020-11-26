@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
+import json
 
 # Create your views here.
 
@@ -184,11 +185,13 @@ def orderList(request):
 
 @api_view(['POST'])
 def orderCreate(request):
-	print("request:\n{}".format(request.data))
-	serializer = OrderSerializer(data=request.data)
+	body = json.loads(request.body)
+	customer = Customer.objects.get(name=body["customer"])
+	product = Product.objects.get(name=body["product"])
+	order = Order.objects.create(customer=customer, product=product)
+	serializer = OrderSerializer(instance=order, data=request.data)
 	if serializer.is_valid():
 		serializer.save()
-	print(serializer.data)
 	return Response(serializer.data)
 
 @api_view(['POST'])

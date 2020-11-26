@@ -11,8 +11,8 @@ function OrderForm(props) {
     function submitOrder(e) {
         e.preventDefault()
         axios.post('http://127.0.0.1:8000/order-create/', {
-            customer: 1,
-            product: 1,
+            customer,
+            product,
             status
         })
             .then(res => {
