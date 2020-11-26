@@ -11,24 +11,8 @@ function OrderForm(props) {
     function submitOrder(e) {
         e.preventDefault()
         axios.post('http://127.0.0.1:8000/order-create/', {
-            customer: {
-                id: 1,
-                name: "James",
-                phone: "6463549844",
-                email: "james@gmail.com",
-                date_created: "2020-11-20T09:39:11.820947Z"
-            },
-            product: {
-                id: 4,
-                name: "Avocado",
-                price: 1.49,
-                category: "Snacks",
-                description: "A healthy treat...",
-                date_created: "2020-11-20T10:48:05.535311Z",
-                tags: [
-                    4
-                ]
-            },
+            customer: 1,
+            product: 1,
             status
         })
             .then(res => {

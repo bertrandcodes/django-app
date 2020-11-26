@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 # Create your views here.
 
 from .models import *
 from .forms import OrderForm
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import *
 
 def home(request):
 	orders = Order.objects.all()
@@ -70,3 +74,137 @@ def deleteOrder(request, pk):
 
 	context = {'item':order}
 	return render(request, 'accounts/delete.html', context)
+
+# REST API
+
+@api_view(['GET'])
+def apiOverview(request):
+	api_urls = {
+		'Product List': '/product-list/',
+		'Product Detail View': '/product-detail/<str:pk>',
+		'Product Create': '/product-create/',
+		'Product Update': '/product-update/<str:pk>/',
+		'Product Delete': '/product-delete/<str:pk>/',
+		'Customer List': '/customer-list/',
+		'Customer Detail View': '/product-detail/<str:pk>',
+		'Order List': '/order-list/',
+		'Order Create': '/product-create/',
+		'Order Update': '/product-update/<str:pk>/',
+		'Order Delete': '/product-delete/<str:pk>/'
+	}
+	return Response(api_urls)
+
+# Products
+
+@api_view(['GET'])
+def productList(request):
+	products = Product.objects.all()
+	serializer = ProductSerializer(products, many=True)
+	return Response(serializer.data)
+
+@api_view(['GET'])
+def productDetail(request, pk):
+	product = Product.objects.get(id=pk)
+	serializer = ProductSerializer(product, many=False)
+	return Response(serializer.data)
+
+@api_view(['POST'])
+def productCreate(request):
+	serializer = ProductSerializer(data=request.data)
+
+	if serializer.is_valid():
+		serializer.save()
+
+	return Response(serializer.data)
+
+@api_view(['POST'])
+def productUpdate(request, pk):
+	product = Product.objects.get(id=pk)
+	serializer = ProductSerializer(instance=product, data=request.data)
+
+	if serializer.is_valid():
+		serializer.save()
+
+	return Response(serializer.data)
+
+@api_view(['DELETE'])
+def productDelete(request, pk):
+	product = Product.objects.get(id=pk)
+	product.delete()
+	
+	return Response('Item successfully deleted!')
+
+# Customers
+
+@api_view(['GET'])
+def customerList(request):
+	customers = Customer.objects.all()
+	serializer = CustomerSerializer(customers, many=True)
+	return Response(serializer.data)
+
+@api_view(['GET'])
+def customerDetail(request, pk):
+	customer = Customer.objects.get(id=pk)
+	serializer = CustomerSerializer(customer, many=False)
+	return Response(serializer.data)
+
+@api_view(['POST'])
+def customerCreate(request):
+	serializer = CustomerSerializer(data=request.data)
+
+	if serializer.is_valid():
+		serializer.save()
+
+	return Response(serializer.data)
+
+@api_view(['POST'])
+def customerUpdate(request, pk):
+	customer = Customer.objects.get(id=pk)
+	serializer = ProductSerializer(instance=customer, data=request.data)
+
+	if serializer.is_valid():
+		serializer.save()
+
+	return Response(serializer.data)
+
+@api_view(['DELETE'])
+def customerDelete(request, pk):
+	customer = Customer.objects.get(id=pk)
+	customer.delete()
+	
+	return Response('Customer deleted!')
+
+# Orders
+
+@api_view(['GET'])
+def orderList(request):
+	orders = Order.objects.all()
+	serializer = OrderSerializer(orders, many=True)
+	return Response(serializer.data)
+
+@api_view(['POST'])
+def orderCreate(request):
+	print("request:\n{}".format(request.data))
+	serializer = OrderSerializer(data=request.data)
+	if serializer.is_valid():
+		serializer.save()
+	print(serializer.data)
+	return Response(serializer.data)
+
+@api_view(['POST'])
+def orderUpdate(request, pk):
+	order = Order.objects.get(id=pk)
+	serializer = OrderSerializer(instance=order, data=request.data)
+
+	if serializer.is_valid():
+		serializer.save()
+
+	return Response(serializer.data)
+
+@api_view(['DELETE'])
+def orderDelete(request, pk):
+	order = Order.objects.get(id=pk)
+	order.delete()
+	
+	return Response('Order successfully deleted!')
+
