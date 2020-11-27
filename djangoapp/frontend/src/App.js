@@ -6,6 +6,7 @@ import Dashboard from './components/Dashboard';
 import Products from './components/Products';
 import Customer from './components/Customer';
 import OrderForm from './components/OrderForm';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/orderform" component={OrderForm} />
         </div>
       </Switch>
+      <Footer />
     </Router>
   );
 }
