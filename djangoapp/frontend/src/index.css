@@ -299,3 +299,23 @@ form .button {
 .fa-search {
   margin-right: 15px;
 }
+
+.arrows {
+  position: relative;
+}
+
+.fa-chevron-left {
+  position: absolute;
+  font-size: 20px;
+  top: 15px;
+  left: 75px;
+  cursor: pointer;
+}
+
+.fa-chevron-right {
+  position: absolute;
+  font-size: 20px;
+  top: 15px;
+  right: 75px;
+  cursor: pointer;
+}

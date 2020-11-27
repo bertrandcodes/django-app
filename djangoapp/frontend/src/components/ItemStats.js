@@ -1,11 +1,11 @@
-import { Fragment, useState, useEffect } from 'react';
+import { Fragment, useState, useEffect, useReducer } from 'react';
 import axios from 'axios';
 import CountUp from 'react-countup';
 import { Pie, Doughnut, Line } from 'react-chartjs-2';
 
 import IncubateModal from './IncubateModal';
 
-const state = {
+const graph = {
     labels: ['January', 'February', 'March',
         'April', 'May'],
     datasets: [
@@ -30,7 +30,7 @@ const state = {
     ]
 }
 
-const state2 = {
+const graph2 = {
     labels: ['January', 'February', 'March',
         'April', 'May'],
     datasets: [
@@ -55,8 +55,23 @@ const state2 = {
     ]
 }
 
+function reducer(state, action) {
+    switch (action.type) {
+        case 'increment':
+            return { orders: parseInt(state.orders) + 1 };
+        case 'decrement':
+            return { orders: parseInt(state.orders) - 1 };
+        default:
+            throw new Error();
+    }
+}
+
 function ItemStats(props) {
+    let initialState = { orders: (Math.random() * 15).toFixed() }
     const [modalShow, setModalShow] = useState(false);
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    const [value, setValue] = useState((Math.random() * 10).toFixed())
 
     const [product, setProduct] = useState([])
 
@@ -106,7 +121,7 @@ function ItemStats(props) {
                     <div class="card card-body product-info">
                         <h5>Description:</h5>
                         <hr />
-                        <p className="product-descrip">{product.description}.</p>
+                        <p className="product-descrip">{product.description}</p>
                     </div>
                 </div>
 
@@ -114,8 +129,13 @@ function ItemStats(props) {
                     <div class="card card-body">
                         <h5>Total Orders:</h5>
                         <hr />
-                        <h1 className="h1-style"><CountUp className="h1-style" end={(Math.random() * 15).toFixed()} />                        <h5 className="increase">
-                            (+{(Math.random() * 10).toFixed()}%)
+
+                        <h1 className="h1-style">
+                            <div className="arrows"><i onClick={() => dispatch({ type: 'decrement' })} class="fa fa-chevron-left"></i><CountUp className="h1-style" end={state.orders} />
+                                <i onClick={() => dispatch({ type: 'increment' })} class="fa fa-chevron-right"></i>
+                            </div>
+                            <h5 className="increase">
+                                (+{value}%)
                         </h5></h1>
 
 
@@ -132,7 +152,7 @@ function ItemStats(props) {
                             <div className="graphs">
                                 <div className="line">
                                     <Line
-                                        data={state2}
+                                        data={graph2}
                                         options={{
                                             title: {
                                                 display: true,
@@ -148,7 +168,7 @@ function ItemStats(props) {
                                 </div>
                                 <div className="pie">
                                     <Pie
-                                        data={state}
+                                        data={graph}
                                         options={{
                                             title: {
                                                 display: true,
@@ -163,7 +183,7 @@ function ItemStats(props) {
                                     />
 
                                     <Doughnut
-                                        data={state}
+                                        data={graph}
                                         options={{
                                             title: {
                                                 display: true,
