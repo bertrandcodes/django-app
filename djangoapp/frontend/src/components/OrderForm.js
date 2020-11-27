@@ -3,6 +3,9 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function OrderForm(props) {
     const [customer, setCustomer] = useState('')
     const [product, setProduct] = useState('')
@@ -16,8 +19,9 @@ function OrderForm(props) {
             status
         })
             .then(res => {
-                console.log(res)
-                window.location.replace('/');
+                console.log(res);
+                setTimeout(() => { window.location.replace('/'); }, 1500)
+                toast.success("Order has been placed! 🎉")
             })
             .catch(err => {
                 console.log(err)
@@ -65,6 +69,11 @@ function OrderForm(props) {
                     </div>
                 </div>
             </div>
+            <ToastContainer
+                position="bottom-center"
+                autoClose={1500}
+                hideProgressBar={false}
+                limit={1} />
         </Fragment>
     );
 }

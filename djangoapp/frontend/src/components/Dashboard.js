@@ -6,6 +6,9 @@ import Status from './Status';
 import CustomerModal from './CustomerModal';
 import UpdateOrder from './UpdateOrder';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function Dashboard() {
     const [customers, setCustomers] = useState([])
@@ -46,6 +49,7 @@ function Dashboard() {
                 console.log(res)
                 let array = [...orders]
                 setOrders(array.filter(item => item.id !== id))
+                toast.error("Order has been deleted. ✌🏻")
             })
             .catch(err => {
                 console.log(err)
@@ -127,7 +131,11 @@ function Dashboard() {
                         </table>
                     </div>
                 </div>
-
+                <ToastContainer
+                    position="bottom-center"
+                    autoClose={3000}
+                    hideProgressBar={false}
+                    limit={1} />
             </div >
         </Fragment>
     );

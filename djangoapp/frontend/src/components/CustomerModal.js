@@ -4,7 +4,6 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
-
 function CustomerModal(props) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
