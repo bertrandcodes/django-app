@@ -3,6 +3,8 @@ import axios from 'axios';
 import CountUp from 'react-countup';
 import { Pie, Doughnut, Line } from 'react-chartjs-2';
 
+import IncubateModal from './IncubateModal';
+
 const state = {
     labels: ['January', 'February', 'March',
         'April', 'May'],
@@ -54,6 +56,8 @@ const state2 = {
 }
 
 function ItemStats(props) {
+    const [modalShow, setModalShow] = useState(false);
+
     const [product, setProduct] = useState([])
 
 
@@ -67,6 +71,17 @@ function ItemStats(props) {
             })
     }, [])
 
+    function deleteIt(id) {
+        axios.delete(`http://127.0.0.1:8000/product-delete/${id}/`)
+            .then(res => {
+                console.log(res)
+                window.location.replace('/products')
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
     return (
         <Fragment>
             <br />
@@ -75,10 +90,15 @@ function ItemStats(props) {
                 <div class="col-md">
                     <div class="card card-body product-info">
                         <h5>Product: <span className="nobold">{product.name}</span></h5>
-                        <hr className="horizontal"/>
+                        <hr className="horizontal" />
 
-                        <a class="btn btn-outline-info  btn-sm btn-block update-prod" href>Incubate Product</a>
-                        <a class="btn btn-outline-danger  btn-sm btn-block danger" href>Delete Product</a>
+                        <a class="btn btn-outline-info  btn-sm btn-block update-prod" href onClick={() => setModalShow(true)}>Incubate Product</a>
+                        <IncubateModal
+                            id={product.id}
+                            show={modalShow}
+                            onHide={() => setModalShow(false)}
+                        />
+                        <a class="btn btn-outline-danger  btn-sm btn-block danger" onClick={() => { deleteIt(product.id) }} href>Delete Product</a>
                     </div>
                 </div>
 
@@ -86,7 +106,7 @@ function ItemStats(props) {
                     <div class="card card-body product-info">
                         <h5>Description:</h5>
                         <hr />
-                        <p className="product-descrip">{product.description}</p>
+                        <p className="product-descrip">{product.description}.</p>
                     </div>
                 </div>
 

@@ -253,3 +253,49 @@ form .button {
 .update-prod:hover {
   background-color: #138496;
 }
+
+.trash {
+  color: silver !important;
+}
+
+.bear-div {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.bear {
+  width: 100px;
+  margin-top: -10px;
+  margin-bottom: 15px;
+}
+
+.algo {
+  font-size: 20px;
+}
+
+.recommend {
+  display: block;
+  color: green;
+}
+
+.bear-input {
+  text-align: center;
+  width: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bear-label {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+
+.bear-div.bottom {
+  text-align: center;
+  margin-bottom: -10px;
+}
+
+.fa-search {
+  margin-right: 15px;
+}
