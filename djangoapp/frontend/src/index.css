@@ -62,7 +62,7 @@ nav {
 .inner {
   padding-left: 40px;
   padding-right: 40px;
-  min-height: 80vh;
+  min-height: 70vh;
 }
 
 body {
@@ -105,7 +105,7 @@ tr td {
 
 .order-row {
   margin: auto;
-  margin-top: 55px;
+  margin-top: 80px;
   width: 400px;
 }
 
@@ -127,6 +127,16 @@ tr td {
   align-items: center;
   height: 455px;
   padding-top: 30px;
+}
+
+.order-row.product {
+  margin-top: 40px;
+  margin-bottom: 70px;
+  width: 550px;
+}
+
+.order-row .card-body.product {
+  height: 590px;
 }
 
 form .button {
@@ -165,4 +175,18 @@ form .button {
   margin-right: auto;
   height: 200px;
   align-items: center;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.product-form {
+  width: 80%;
+}
+
+.product-button {
+  margin-top: 20px;
 }
