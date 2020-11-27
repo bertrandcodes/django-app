@@ -1,10 +1,12 @@
 import { Fragment, useState, useEffect } from 'react';
 import axios from 'axios';
+import UpdateCustomer from './UpdateCustomer';
 
 function Customer(props) {
     const [customer, setCustomer] = useState([])
     const [orders, setOrders] = useState([])
 
+    const [modalShow, setModalShow] = useState(false);
 
     useEffect(() => {
         axios.get(`http://127.0.0.1:8000/customer-detail/${props.match.params.id}/`)
@@ -24,6 +26,28 @@ function Customer(props) {
             })
     }, [])
 
+    function deleteIt(id) {
+        axios.delete(`http://127.0.0.1:8000/order-delete/${id}/`)
+            .then(res => {
+                console.log(res)
+                window.location.reload()
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+    function deleteUser(id) {
+        axios.delete(`http://127.0.0.1:8000/customer-delete/${id}/`)
+            .then(res => {
+                console.log(res)
+                window.location.reload()
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
     return (
         <Fragment>
             <br />
@@ -33,8 +57,13 @@ function Customer(props) {
                     <div class="card card-body">
                         <h5>Customer:</h5>
                         <hr />
-                        <a class="btn btn-outline-info  btn-sm btn-block" href="">Update Customer</a>
-                        <a class="btn btn-outline-danger  btn-sm btn-block" href="">Delete Customer</a>
+                        <a class="btn btn-outline-info  btn-sm btn-block update" href onClick={() => setModalShow(true)}>Update Customer</a>
+                        <UpdateCustomer
+                            id={customer.id}
+                            show={modalShow}
+                            onHide={() => setModalShow(false)}
+                        />
+                        <a class="btn btn-outline-danger  btn-sm btn-block" href="/" onClick={() => { deleteUser(customer.id) }}>Delete Customer</a>
                     </div>
                 </div>
 
@@ -56,7 +85,7 @@ function Customer(props) {
                 </div>
             </div>
 
-
+            {/* 
             <br />
             <div class="row">
                 <div class="col">
@@ -69,7 +98,8 @@ function Customer(props) {
                 </div>
 
             </div>
-            <br />
+            <br /> */}
+            <br></br>
 
             <div class="row">
                 <div class="col-md">
@@ -92,7 +122,7 @@ function Customer(props) {
                                     <td>{order.status}</td>
                                     <td><a class="btn btn-sm btn-info" href="">Update</a></td>
 
-                                    <td><a class="btn btn-sm btn-danger">Delete</a></td>
+                                    <td><a class="btn btn-sm btn-danger" onClick={() => { deleteIt(order.id) }}>Delete</a></td>
                                 </tr>
                             ))}
 

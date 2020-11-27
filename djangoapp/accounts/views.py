@@ -118,7 +118,7 @@ def productCreate(request):
 
 	return Response(serializer.data)
 
-@api_view(['POST'])
+@api_view(['PUT'])
 def productUpdate(request, pk):
 	product = Product.objects.get(id=pk)
 	serializer = ProductSerializer(instance=product, data=request.data)
@@ -158,10 +158,10 @@ def customerCreate(request):
 
 	return Response(serializer.data)
 
-@api_view(['POST'])
+@api_view(['PUT'])
 def customerUpdate(request, pk):
 	customer = Customer.objects.get(id=pk)
-	serializer = ProductSerializer(instance=customer, data=request.data)
+	serializer = CustomerSerializer(instance=customer, data=request.data)
 
 	if serializer.is_valid():
 		serializer.save()
@@ -194,7 +194,7 @@ def orderCreate(request):
 		serializer.save()
 	return Response(serializer.data)
 
-@api_view(['POST'])
+@api_view(['PUT'])
 def orderUpdate(request, pk):
 	order = Order.objects.get(id=pk)
 	serializer = OrderSerializer(instance=order, data=request.data)

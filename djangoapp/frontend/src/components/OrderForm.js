@@ -17,6 +17,7 @@ function OrderForm(props) {
         })
             .then(res => {
                 console.log(res)
+                window.location.replace('/');
             })
             .catch(err => {
                 console.log(err)
@@ -28,6 +29,7 @@ function OrderForm(props) {
             <div class="order-row">
                 <div >
                     <div class="card card-body">
+                        <h1>Make someone's day.</h1>
                         <Form>
                             <Form.Group controlId="exampleForm.ControlSelect1">
                                 <Form.Label>Customer:</Form.Label>

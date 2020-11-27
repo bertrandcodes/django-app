@@ -108,9 +108,23 @@ tr td {
   width: 400px;
 }
 
+.order-row h1 {
+  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.card-body {
+  overflow: scroll;
+}
+
+.card-body::-webkit-scrollbar {
+  display: none;
+}
+
 .order-row .card-body {
   align-items: center;
-  height: 380px;
+  height: 455px;
   padding-top: 30px;
 }
 
@@ -118,4 +132,20 @@ form .button {
   position: relative;
   left: 65px;
   top: 20px;
+}
+
+.modal-body {
+  padding: 20px 100px 20px 100px;
+}
+
+.btn-info {
+  color: white !important;
+}
+
+.update {
+  color: #17a2b8 !important;
+}
+
+.update:hover {
+  color: white !important;
 }

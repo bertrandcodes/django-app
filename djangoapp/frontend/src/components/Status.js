@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 
-function Status() {
+function Status(props) {
     return (
         <Fragment>
             <br />
@@ -13,7 +13,7 @@ function Status() {
                                 <h5 class="card-title">Total Orders</h5>
                             </div>
                             <div class="card-body">
-                                <h3 class="card-title">1</h3>
+                                <h3 class="card-title">{props.orders.length}</h3>
                             </div>
                         </div>
                     </div>
@@ -26,7 +26,7 @@ function Status() {
                                 <h5 class="card-title">Orders Delivered</h5>
                             </div>
                             <div class="card-body">
-                                <h3 class="card-title">2</h3>
+                                <h3 class="card-title">{props.orders.filter(order => order.status == "Out for delivery").length}</h3>
                             </div>
                         </div>
                     </div>
@@ -39,7 +39,7 @@ function Status() {
                                 <h5 class="card-title">Orders Pending</h5>
                             </div>
                             <div class="card-body">
-                                <h3 class="card-title">3</h3>
+                                <h3 class="card-title">{props.orders.filter(order => order.status == "Pending").length}</h3>
                             </div>
                         </div>
                     </div>

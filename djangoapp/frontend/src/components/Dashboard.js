@@ -3,12 +3,18 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import Status from './Status';
+import CustomerModal from './CustomerModal';
+import UpdateOrder from './UpdateOrder';
 
 
 function Dashboard() {
     const [customers, setCustomers] = useState([])
     const [orders, setOrders] = useState([])
     const [products, setProducts] = useState([])
+
+    const [modalShow, setModalShow] = useState(false);
+    const [modal2Show, setModal2Show] = useState(false);
+
 
     useEffect(() => {
         axios.get('http://127.0.0.1:8000/customer-list/')
@@ -38,7 +44,8 @@ function Dashboard() {
         axios.delete(`http://127.0.0.1:8000/order-delete/${id}/`)
             .then(res => {
                 console.log(res)
-                window.location.reload()
+                let array = [...orders]
+                setOrders(array.filter(item => item.id !== id))
             })
             .catch(err => {
                 console.log(err)
@@ -47,7 +54,7 @@ function Dashboard() {
 
     return (
         <Fragment>
-            <Status />
+            <Status orders={orders} />
             <br />
 
             <div class="row status">
@@ -55,7 +62,13 @@ function Dashboard() {
                     <h5>CUSTOMERS:</h5>
                     <hr />
                     <div class="card card-body">
-                        <Link class="btn btn-primary  btn-sm btn-block" to="/customer">Create Customer</Link>
+                        <button type="button" class="btn btn-primary  btn-sm btn-block" onClick={() => setModalShow(true)}>
+                            Create Customer
+                        </button>
+                        <CustomerModal
+                            show={modalShow}
+                            onHide={() => setModalShow(false)}
+                        />
                         <table class="table table-sm">
                             <tr>
                                 <th></th>
@@ -98,10 +111,18 @@ function Dashboard() {
                                     <td>{order.product.name}</td>
                                     <td>{order.date_created}</td>
                                     <td>{order.status}</td>
-                                    <td><a class="btn btn-sm btn-info" href="">Update</a></td>
+                                    <td><a class="btn btn-sm btn-info" onClick={() => setModal2Show(true)}>Update</a></td>
                                     <td><a class="btn btn-sm btn-danger" onClick={() => { deleteIt(order.id) }}>Delete</a></td>
+                                    <UpdateOrder
+                                        id={order.id}
+                                        customers={customers}
+                                        products={products}
+                                        show={modal2Show}
+                                        onHide={() => setModal2Show(false)}
+                                    />
                                 </tr>
                             ))}
+
 
                         </table>
                     </div>
