@@ -190,3 +190,66 @@ form .button {
 .product-button {
   margin-top: 20px;
 }
+
+.center {
+  text-align: center;
+}
+
+.fas {
+  text-decoration: none !important;
+}
+
+.nobold {
+  font-weight: 200;
+  margin-left: 5px;
+}
+
+.graphs {
+  display: flex;
+}
+
+.line {
+  width: 700px;
+  margin-top: 20px;
+  margin-left: 75px;
+}
+
+.pie {
+  width: 400px;
+  margin-left: auto;
+  margin-right: 55px;
+}
+
+.increase {
+  color: #00ff00;
+}
+
+.product-info {
+  height: 100%;
+}
+
+.product-descrip {
+  margin: auto;
+}
+
+.horizontal {
+  margin-bottom: 30px;
+}
+
+.danger {
+  background-color: #dc3545;
+  color: white !important;
+}
+
+.danger:hover {
+  background-color: #c3313f;
+}
+
+.update-prod {
+  background-color: #17a2b8;
+  color: white !important;
+}
+
+.update-prod:hover {
+  background-color: #138496;
+}

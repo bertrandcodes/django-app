@@ -55,7 +55,7 @@ function Customer(props) {
             <div class="row">
                 <div class="col-md">
                     <div class="card card-body">
-                        <h5>Customer:</h5>
+                        <h5>Customer: <span className="nobold">{customer.name}</span></h5>
                         <hr />
                         <a class="btn btn-outline-info  btn-sm btn-block update" href onClick={() => setModalShow(true)}>Update Customer</a>
                         <UpdateCustomer
@@ -85,20 +85,6 @@ function Customer(props) {
                 </div>
             </div>
 
-            {/* 
-            <br />
-            <div class="row">
-                <div class="col">
-                    <div class="card card-body">
-                        <form method="get">
-
-                            <button class="btn btn-primary" type="submit">Search</button>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-            <br /> */}
             <br></br>
 
             <div class="row">

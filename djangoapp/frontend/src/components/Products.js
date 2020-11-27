@@ -8,8 +8,6 @@ function Products() {
     const [original, setOriginal] = useState([])
     const [target, setTarget] = useState('')
 
-    const array = JSON.parse(JSON.stringify(products))
-
     useEffect(() => {
         axios.get('http://127.0.0.1:8000/product-list/')
             .then(res => {
@@ -23,10 +21,8 @@ function Products() {
 
     function updateList(e) {
         console.log(e.target.value)
-
         setTarget(e.target.value)
-        const newArr = products.filter(item => item.name.toLowerCase().includes(target.toLowerCase()))
-        setProducts(newArr)
+        setProducts(products.filter(item => item.name.toLowerCase().includes(target.toLowerCase())))
     }
 
     function resetList(e) {
@@ -53,20 +49,29 @@ function Products() {
                             pathname: '/productform',
                             state: {
                             }
-                        }}>New Product</Link>
+                        }}>Pitch a New Product</Link>
                     </div>
                     <div class="card card-body">
                         <table class="table">
-                            <tr>
+                            <tr >
                                 <th>Product</th>
-                                <th>Category</th>
-                                <th>Price</th>
+                                <th className="center">Category</th>
+                                <th className="center">Price</th>
+                                <th className="center">Created</th>
+                                <th className="center">Stats</th>
                             </tr>
                             {products.map(product => (
-                                <tr>
+                                <tr >
                                     <td>{product.name}</td>
-                                    <td>{product.category}</td>
-                                    <td>${product.price}</td>
+                                    <td className="center">{product.category}</td>
+                                    <td className="center">${product.price}</td>
+                                    <td className="center">{product.date_created}</td>
+                                    <td className="center">
+                                        <Link class="fas fa-eye" to={{
+                                            pathname: '/itemstats/' + product.id + '/',
+                                        }}></Link>
+
+                                    </td>
                                 </tr>
                             ))}
 

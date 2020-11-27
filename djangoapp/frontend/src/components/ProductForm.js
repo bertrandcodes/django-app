@@ -16,7 +16,7 @@ function ProductForm() {
         e.preventDefault()
         axios.post('http://127.0.0.1:8000/product-create/', {
             name,
-            price: price,
+            price: parseInt(price).toFixed(2),
             category,
             description
         })
